@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="w-50" style="position: absolute; right: 0; top: 0;">
+        <div class="row mt-4 mb-4">
+            <div class="col-md-5 input-group-lg">
+                <label class="input-group-text" for="">Add new product</label>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-5">
+                <label class="input-group-text" for="">Title</label>
+                <input class="form-control" type="text" [(ngModel)]="newProduct.title">
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-5">
+                <label class="input-group-text" for="">Description</label>
+                <textarea class="form-control h-75" type="text" [(ngModel)]="newProduct.description"> </textarea>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            
+            <div class="col-md-5">
+                <label class="input-group-text" for="">Price</label>
+                <div class=" input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">$</span>
+                    <input type="number" class="form-control" aria-describedby="addon-wrapping" [(ngModel)]="newProduct.price">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-5">
+                <label class="input-group-text" for="">Quantity</label>
+                <input class="form-control" type="number" [(ngModel)]="newProduct.quantity">
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-5">
+                <button (click)="addProduct()" class="btn btn-primary w-100">Add</button>
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let p of products">
+        <ul class="list-group read w-25 mt-4 mb-4">
+            <li class="list-group-item"><input class="form-control" [(ngModel)]="p.title" ></li>
+            <li class="list-group-item"><input class="form-control" [(ngModel)]="p.description" ></li>
+            <li class="list-group-item"> 
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">$</span>
+                    <input type="text" class="form-control" aria-describedby="addon-wrapping" [(ngModel)]="p.price">
+                </div>
+            </li>
+            <li class="list-group-item"><input class="form-control" [(ngModel)]="p.quantity" ></li>
+            <li class="list-group-item">Created: {{p.dateTime | date: "HH:mm dd-MM-yyyy"}}</li>
+            <li class="list-group-item">
+                <button (click)="updateProduct(p)" class="btn btn-success w-100">Save</button>
+            </li>
+            <li class="list-group-item">
+                <button (click)="deleteProduct(p.key)" class="btn btn-danger w-100">Delete</button>
+            </li>
+        </ul>
+    </div>
+</div>
