@@ -35,12 +35,22 @@
         </div>
         <div class="row mt-4 mb-4">
             <div class="col-md-5">
+                <label #imageElement class="input-group-text" for="">Image</label>
+                <input #productImage class="form-control" type="file">
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-5">
                 <button (click)="addProduct()" class="btn btn-primary w-100">Add</button>
             </div>
         </div>
     </div>
     <div *ngFor="let p of products">
         <ul class="list-group read w-25 mt-4 mb-4">
+            <li class="list-group-item">
+                <img (click)="changeImage(p)" src="{{p.photoURL}}" class="img-fluid" alt="Responsive image">
+                <input id="{{p.key}}-image" (change)="addImage($event, p)" style="display: none" class="form-control" type="file">
+            </li>
             <li class="list-group-item"><input class="form-control" [(ngModel)]="p.title" ></li>
             <li class="list-group-item"><input class="form-control" [(ngModel)]="p.description" ></li>
             <li class="list-group-item"> 
