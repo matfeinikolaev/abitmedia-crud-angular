@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="w-50" style="position: absolute; right: 0; top: 0;">
+        <ion-row class="row mt-4 mb-4">
+            <ion-col class="col-md-5 input-group-lg">
+                <ion-label class="input-group-text" for="">Add new product</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row class="row mt-4 mb-4">
+            <ion-col class="col-md-5">
+                <ion-label #titleElement class="input-group-text" for="">Title</ion-label>
+                <input class="form-control" type="text" [(ngModel)]="newProduct.title">
+            </ion-col>
+        </ion-row>
+        <ion-row class="row mt-4 mb-4">
+            <ion-col class="col-md-5">
+                <ion-label #descriptionElement class="input-group-text" for="">Description</ion-label>
+                <textarea class="form-control h-75" type="text" [(ngModel)]="newProduct.description"> </textarea>
+            </ion-col>
+        </ion-row>
+        <ion-row class="row mt-4 mb-4">
+            
+            <ion-col class="col-md-5">
+                <ion-label #priceElement class="input-group-text" for="">Price</ion-label>
+                <div class=" input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">$</span>
+                    <input type="number" class="form-control" aria-describedby="addon-wrapping" [(ngModel)]="newProduct.price">
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="row mt-4 mb-4">
+            <ion-col class="col-md-5">
+                <ion-label #quantityElement class="input-group-text" for="">Quantity</ion-label>
+                <input class="form-control" type="number" [(ngModel)]="newProduct.quantity">
+            </ion-col>
+        </ion-row>
+        <ion-row class="row mt-4 mb-4">
+            <ion-col class="col-md-5">
+                <ion-label #imageElement class="input-group-text" for="">Image</ion-label>
+                <input #productImage class="form-control" type="file">
+            </ion-col>
+        </ion-row>
+        <ion-row class="row mt-4 mb-4">
+            <ion-col class="col-md-5">
+                <button (click)="addProduct()" class="btn btn-primary w-100">Add</button>
+            </ion-col>
+        </ion-row>
+    </div>
+    <div *ngFor="let p of products">
+        <ul class="list-group read w-25 mt-4 mb-4">
+            <li class="list-group-item">
+                <img (click)="changeImage(p)" src="{{p.photoURL}}" onerror="this.src='./assets/img/default-product.png'" class="img-fluid" alt="Responsive image">
+                <input id="{{p.key}}-image" (change)="addImage($event, p)" style="display: none" class="form-control" type="file">
+            </li>
+            <li class="list-group-item"><input class="form-control" [(ngModel)]="p.title" ></li>
+            <li class="list-group-item"><input class="form-control" [(ngModel)]="p.description" ></li>
+            <li class="list-group-item"> 
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">$</span>
+                    <input type="text" class="form-control" aria-describedby="addon-wrapping" [(ngModel)]="p.price">
+                </div>
+            </li>
+            <li class="list-group-item"><input class="form-control" [(ngModel)]="p.quantity" ></li>
+            <li class="list-group-item">Created: {{p.dateTime | date: "HH:mm dd-MM-yyyy"}}</li>
+            <li class="list-group-item">
+                <button (click)="updateProduct(p)" class="btn btn-success w-100">Save</button>
+            </li>
+            <li class="list-group-item">
+                <button (click)="deleteProduct(p.key)" class="btn btn-danger w-100">Delete</button>
+            </li>
+        </ul>
+    </div>
+</div>
