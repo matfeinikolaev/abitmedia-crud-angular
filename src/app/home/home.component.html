@@ -7,20 +7,20 @@
         </div>
         <div class="row mt-4 mb-4">
             <div class="col-md-5">
-                <label class="input-group-text" for="">Title</label>
+                <label #titleElement class="input-group-text" for="">Title</label>
                 <input class="form-control" type="text" [(ngModel)]="newProduct.title">
             </div>
         </div>
         <div class="row mt-4 mb-4">
             <div class="col-md-5">
-                <label class="input-group-text" for="">Description</label>
+                <label #descriptionElement class="input-group-text" for="">Description</label>
                 <textarea class="form-control h-75" type="text" [(ngModel)]="newProduct.description"> </textarea>
             </div>
         </div>
         <div class="row mt-4 mb-4">
             
             <div class="col-md-5">
-                <label class="input-group-text" for="">Price</label>
+                <label #priceElement class="input-group-text" for="">Price</label>
                 <div class=" input-group flex-nowrap">
                     <span class="input-group-text" id="addon-wrapping">$</span>
                     <input type="number" class="form-control" aria-describedby="addon-wrapping" [(ngModel)]="newProduct.price">
@@ -29,7 +29,7 @@
         </div>
         <div class="row mt-4 mb-4">
             <div class="col-md-5">
-                <label class="input-group-text" for="">Quantity</label>
+                <label #quantityElement class="input-group-text" for="">Quantity</label>
                 <input class="form-control" type="number" [(ngModel)]="newProduct.quantity">
             </div>
         </div>
