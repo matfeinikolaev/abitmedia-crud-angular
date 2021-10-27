@@ -48,7 +48,7 @@
     <div *ngFor="let p of products">
         <ul class="list-group read w-25 mt-4 mb-4">
             <li class="list-group-item">
-                <img (click)="changeImage(p)" src="{{p.photoURL}}" class="img-fluid" alt="Responsive image">
+                <img (click)="changeImage(p)" src="{{p.photoURL}}" onerror="this.src='./assets/img/default-product.png'" class="img-fluid" alt="Responsive image">
                 <input id="{{p.key}}-image" (change)="addImage($event, p)" style="display: none" class="form-control" type="file">
             </li>
             <li class="list-group-item"><input class="form-control" [(ngModel)]="p.title" ></li>

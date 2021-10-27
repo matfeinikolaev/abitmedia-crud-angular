@@ -44,13 +44,29 @@ export class HomeComponent implements OnInit {
 
   addImage(e: any, p: any) {
     let selectedFile = e.target.files.item(0);
-    let path = '/users/' + Date.now() + `_${selectedFile.name}`;
-    let ref = this.afStorage.ref(path)
-    ref.put(selectedFile).then(() => {
-      ref.getDownloadURL().subscribe((data: any) => {
-        p.photoURL = data;
+    if (selectedFile != null) this.uploadImage(selectedFile).then(res => p.photoURL = res);
+  }
+
+  uploadImage(selectedFile: any) {
+    return new Promise((resolve, reject) => {
+      let path = '/users/' + Date.now() + `_${selectedFile.name}`;
+      let ref = this.afStorage.ref(path)
+      ref.put(selectedFile).then(() => {
+        ref.getDownloadURL().subscribe((data: any) => {
+          resolve(data);
+        });
       });
-    });
+    })
+  }
+
+  createProduct() {
+    this.productService.createProduct(this.newProduct);
+    this.newProduct = {
+      title: "",
+      description: "",
+      price: null,
+      quantiy: null,
+    };
   }
 
   addProduct() {
@@ -58,27 +74,18 @@ export class HomeComponent implements OnInit {
     this.descriptionElement.nativeElement.classList.remove("bg-danger");
     this.priceElement.nativeElement.classList.remove("bg-danger"); 
     this.quantityElement.nativeElement.classList.remove("bg-danger");
-    
     if (this.newProduct.title != "" && this.newProduct.description != "" && this.newProduct.price != null && this.newProduct.quantity != null) {
       let selectedFile = this.productImage.nativeElement.files.item(0);
-      let path = '/users/' + Date.now() + `_${selectedFile.name}`;
-      let ref = this.afStorage.ref(path)
-      ref.put(selectedFile).then(() => {
-        ref.getDownloadURL().subscribe((data: any) => {
-          this.newProduct.photoURL = data;
+      if (selectedFile != null) {
+        this.uploadImage(selectedFile).then(res => {
+          this.newProduct.photoURL = res;
           this.newProduct.dateTime = new Date().valueOf();
-          this.productService.createProduct(this.newProduct);
-          this.newProduct = {
-            title: "",
-            description: "",
-            price: null,
-            quantiy: null,
-          };
+          this.createProduct();
         });
-      }).catch((err: Error) => {
-        console.log(err)
-      });
-
+      } else {
+        this.newProduct.dateTime = new Date().valueOf();
+        this.createProduct();
+      }
     } else {
       if (this.newProduct.title == "") this.titleElement.nativeElement.classList.add("bg-danger");
       if (this.newProduct.description == "") this.descriptionElement.nativeElement.classList.add("bg-danger");
