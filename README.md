@@ -1,27 +1,7 @@
 # AbitmediaCrudAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
+A simple app that allows you to CRUD a list of products.
+On the right you can see a form to save a product, the list of products will appear on the left side. In the list you can dynamically edit all the properties of products, and save them by clicking "Save" button. You can delete products by clicking "Delete".
+Products are sorted by date.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Built with Angular@12, bootstrap@5.1.3 realtime database provided by Firebase.
