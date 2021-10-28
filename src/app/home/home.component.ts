@@ -70,10 +70,11 @@ export class HomeComponent implements OnInit {
   }
 
   addProduct() {
-    this.titleElement.nativeElement.classList.remove("bg-danger");
-    this.descriptionElement.nativeElement.classList.remove("bg-danger");
-    this.priceElement.nativeElement.classList.remove("bg-danger"); 
-    this.quantityElement.nativeElement.classList.remove("bg-danger");
+    console.log(this.titleElement)
+    this.titleElement.el.classList.remove("bg-danger");
+    this.descriptionElement.el.classList.remove("bg-danger");
+    this.priceElement.el.classList.remove("bg-danger"); 
+    this.quantityElement.el.classList.remove("bg-danger");
     if (this.newProduct.title != "" && this.newProduct.description != "" && this.newProduct.price != null && this.newProduct.quantity != null) {
       let selectedFile = this.productImage.nativeElement.files.item(0);
       if (selectedFile != null) {
@@ -87,10 +88,10 @@ export class HomeComponent implements OnInit {
         this.createProduct();
       }
     } else {
-      if (this.newProduct.title == "") this.titleElement.nativeElement.classList.add("bg-danger");
-      if (this.newProduct.description == "") this.descriptionElement.nativeElement.classList.add("bg-danger");
-      if (this.newProduct.price == null) this.priceElement.nativeElement.classList.add("bg-danger");
-      if (this.newProduct.quantity == null) this.quantityElement.nativeElement.classList.add("bg-danger");
+      if (this.newProduct.title == "") this.titleElement.el.classList.add("bg-danger");
+      if (this.newProduct.description == "") this.descriptionElement.el.classList.add("bg-danger");
+      if (this.newProduct.price == null) this.priceElement.el.classList.add("bg-danger");
+      if (this.newProduct.quantity == null) this.quantityElement.el.classList.add("bg-danger");
     }
   }
 
